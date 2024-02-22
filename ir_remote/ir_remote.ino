@@ -12,7 +12,18 @@ String buton_sag = "FD02FD02";
 
 void setup() {
   Serial.begin(9600);
-  IrReceiver.begin(sensor, 0);  // Kütüphane başlatılıyor
+  IrReceiver.begin(sensor, 0);
+
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(11,OUTPUT);
+}
+
+void ledSecim(int pin){
+  for(int i=8;i<=11;i++){
+    digitalWrite(i,(i==pin));
+  }
 }
 
 void loop() {
@@ -28,15 +39,19 @@ void loop() {
 
     if (kod == buton_yukari) {
       Serial.println("*** Yukarı ***");
+      ledSecim(8);
     }
     else if (kod == buton_asagi) {
       Serial.println("*** Aşağı ***");
+      ledSecim(9);
     }
     else if (kod == buton_sol) {
       Serial.println("*** Sol ***");
+      ledSecim(10);
     }
     else if (kod == buton_sag) {
       Serial.println("*** Sağ ***");
+      ledSecim(11);
     } 
     else {
       Serial.println(kod);
