@@ -4,11 +4,13 @@ String kod, sonkod;
 int sensor = 3;  // Sensörün S pini belirtiliyor
 
 // kumanda tanımları
-String buton_yukari = "FF00FD02";
-String buton_asagi = "FE01FD02";
-String buton_sol = "FC03FD02";
-String buton_sag = "FD02FD02";
+String buton_yukari = "BF40FB04";
+String buton_asagi = "BE41FB04";
+String buton_sol = "F807FB04";
+String buton_sag = "F906FB04";
+String buton_ok = "BB44FB04";
 
+int tumu_durum = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -24,6 +26,18 @@ void ledSecim(int pin){
   for(int i=8;i<=11;i++){
     digitalWrite(i,(i==pin));
   }
+}
+
+void tum_ledler(){ // hepsini aç/kapa
+  if(tumu_durum){
+    tumu_durum = 0;
+  } else {
+    tumu_durum = 1;
+  }
+  for(int i=8;i<=11;i++){
+    digitalWrite(i,tumu_durum);
+  }
+  delay(250);
 }
 
 void loop() {
@@ -52,7 +66,11 @@ void loop() {
     else if (kod == buton_sag) {
       Serial.println("*** Sağ ***");
       ledSecim(11);
-    } 
+    }
+    else if (kod == buton_ok) {
+      Serial.println("*** Tümünü aç/kapa ***");
+      tum_ledler();
+    }
     else {
       Serial.println(kod);
     }

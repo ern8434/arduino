@@ -51,6 +51,9 @@ only a current source to VCC is active.
 A  detailed description of the PCF8574 you will find in the [pcf8574.pdf](./docs/pcf8574.pdf).
 
 ## Library Usage
+Possibly make a weather station.
+
+![Weather](./docs/LCD_Temp_Hum.JPG)
 
 # License
 This library is licensed under MIT Licence.
@@ -59,4 +62,8 @@ This library is licensed under MIT Licence.
 
 # Helpful Links
 [Wikipedia - a great description of HD44780 module](https://de.wikipedia.org/wiki/HD44780)
+
+[How to Initialize LCD correctly](https://web.alfredstate.edu/faculty/weimandn/lcd/lcd_initialization/lcd_initialization_index.html)
+
+[LCD Addressing](https://web.alfredstate.edu/faculty/weimandn/lcd/lcd_addressing/lcd_addressing_index.html)
 
