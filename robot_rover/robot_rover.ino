@@ -1,12 +1,3 @@
-/*
-  L298N Motor Sürücü Kartı Arduino ile Nasıl Kullanılır? (2 Motor)
- 
-  L298N çift motor sürücü modülünün detaylı açıklaması ve örnek projelerini
-  web sitemizde bulabilirsiniz.
- 
-  Mete Hoca
-  https://www.metehoca.com/
-*/
 
 int IN1 = 2;    // Sürücü kartın IN1 bağlantısı
 int IN2 = 3;    // Sürücü kartın IN2 bağlantısı
