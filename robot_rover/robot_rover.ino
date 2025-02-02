@@ -4,48 +4,46 @@ int IN2 = 3;    // Sürücü kartın IN2 bağlantısı
 int IN3 = 4;    // Sürücü kartın IN3 bağlantısı
 int IN4 = 5;    // Sürücü kartın IN4 bağlantısı
 
-int ENA = 9;   // 1. motorun (A) çalışma ve hız kontrol pini
-int ENB = 10;    // 2. motorun (B) çalışma ve hız kontrol pini
-                // IN1 ve IN2 pinleri 1. motorun bağlı olduğu OUT1 ve OUT2
-                // çıkışlarını, ENA pini ise motor hızını kontrol ediyor
-                // ENA = ENABLE MOTOR A demek, yani sola takılan motor
-                // IN3 ve IN4 pinleri 2. motorun bağlı olduğu OUT3 ve OUT4
-                // çıkışlarını, ENB pini ise motor hızını kontrol ediyor
-                // ENB = ENABLE MOTOR B demek, yani sağa takılan motor
-                // Bu pinler PWM (~) destekli bir header'a bağlanmalı
+int ENA = 9;
+int ENB = 10;   
 
 void setup() {
-  pinMode(IN1, OUTPUT);     // Pinler çıkış olarak ayarlanıyor
+  pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
-
-  analogWrite(ENA, 100);    // 1. motora hız ayarı yapılıyor (0-255)
-  analogWrite(ENB, 100);    // 2. motora hız ayarı yapılıyor (0-255)
+  
+  //pinMode(ENA, OUTPUT);
+  //pinMode(ENB, OUTPUT);
 }
-
+ 
 void loop() {
-  digitalWrite(IN1, HIGH);  // 1. motor kısa bir süre döndürülüyor
+  analogWrite(ENA, 200);     // Hız ayarı yapılıyor (0-255 arası yazılabilir)
+  
+  digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
-  delay(1000);
+  delay(2000);
+  
+  digitalWrite(IN1, LOW);   // IN1 ve IN2'yi LOW yaptığımızda motor durur
+  digitalWrite(IN2, LOW);
+  delay(400);              // Motorun durduğu süre. Hızlı dönüşlerden sonra
+  
   digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-
-  digitalWrite(IN3, HIGH);  // 2. motor kısa bir süre döndürülüyor
-  digitalWrite(IN4, LOW);
-  delay(1000);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
-
-  digitalWrite(IN1, LOW);   // 1. motor TERS YÖNE kısa bir süre döndürülüyor
   digitalWrite(IN2, HIGH);
-  delay(1000);
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
+  delay(2000);
 
-  digitalWrite(IN3, LOW);   // 2. motor TERS YÖNE kısa bir süre döndürülüyor
-  digitalWrite(IN4, HIGH);
-  delay(1000);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
+  digitalWrite(IN1, LOW);   // IN1 ve IN2'yi LOW yaptığımızda motor durur
+  digitalWrite(IN2, LOW);
+  delay(400);              // Motorun durduğu süre. Hızlı dönüşlerden sonra
+                            // yön değişimi yapacaksak bir süre beklemek
+                            // sürücü kart ve motoru zorlamamak için faydalıdır
+ /*
+  analogWrite(ENA, 150);    // Yeni hız ayarı yapılıyor. Biraz daha hızlı olsun!
+  digitalWrite(IN1, LOW);   // IN1 ve IN2 yukarıya göre ters ayarlandı
+  digitalWrite(IN2, HIGH);  // yani bu kez motoru diğer yöne döndüreceğiz
+  delay(2000);              // Motorun dönüş süresi
+  digitalWrite(IN1, LOW);   // Motoru tekrar durduruyor
+  digitalWrite(IN2, LOW);   // ve
+  delay(1000);              // yine biraz bekliyoruz...
+  */
 }
