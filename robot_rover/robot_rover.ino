@@ -13,13 +13,13 @@ void setup() {
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   
-  pinMode(ENA, OUTPUT);
-  pinMode(ENB, OUTPUT);
+  //pinMode(ENA, OUTPUT);
+  //pinMode(ENB, OUTPUT);
 }
  
 void loop() {
-  analogWrite(ENA, 255);
-  analogWrite(ENB, 255);
+  analogWrite(ENA, 130);
+  
   
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
@@ -27,25 +27,14 @@ void loop() {
   
   digitalWrite(IN1, LOW);   // IN1 ve IN2'yi LOW yaptığımızda motor durur
   digitalWrite(IN2, LOW);
-  delay(400);              // Motorun durduğu süre. Hızlı dönüşlerden sonra
-  
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-  delay(2000);
+  delay(1000);
 
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  delay(2000);
   
-  delay(1000);              // Motorun durduğu süre. Hızlı dönüşlerden sonra
-                            // yön değişimi yapacaksak bir süre beklemek
-                            // sürücü kart ve motoru zorlamamak için faydalıdır
- /*
-  analogWrite(ENA, 150);    // Yeni hız ayarı yapılıyor. Biraz daha hızlı olsun!
-  digitalWrite(IN1, LOW);   // IN1 ve IN2 yukarıya göre ters ayarlandı
-  digitalWrite(IN2, HIGH);  // yani bu kez motoru diğer yöne döndüreceğiz
-  delay(2000);              // Motorun dönüş süresi
-  digitalWrite(IN1, LOW);   // Motoru tekrar durduruyor
-  digitalWrite(IN2, LOW);   // ve
-  delay(1000);              // yine biraz bekliyoruz...
-  */
+  digitalWrite(IN1, LOW);   // IN1 ve IN2'yi LOW yaptığımızda motor durur
+  digitalWrite(IN2, LOW);
+  delay(1000);
+
 }
