@@ -7,13 +7,14 @@ int IN4 = 2;
 int ENA = 10;
 int ENB = 9;
 
-int yon = 1; 
+int YON = 1; 
+int HIZ = 0;
 
 // 1:ileri -1:geri 0:dur
 
 void yon_sec(int y){ 
   // Eğer ters yön seçildiyse durup bir süre bekleme yap
-  if(y!=0 && y!=yon){
+  if(y!=0 && y!=YON){
     dur();
     delay(500);
   }
@@ -27,7 +28,22 @@ void yon_sec(int y){
     dur();
   }
 
-  yon = y;// yeni yön değerini sakla
+  YON = y;// yeni yön değerini sakla
+}
+
+void hiz(int v){
+  int EN = 0;
+  
+  switch(v){
+    case 0: EN =0;   break;
+    case 1: EN =90;  break;
+    case 2: EN =130;  break;
+    case 3: EN =180; break;
+    case 4: EN =255; break;
+  }
+  analogWrite(ENA, EN);
+  analogWrite(ENB, EN);
+  HIZ = v;
 }
 
 void dur(){
@@ -35,6 +51,8 @@ void dur(){
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
+  hiz(0);
+  YON = 0;
 }
 void yon_ileri(){
   digitalWrite(IN1, HIGH);
@@ -60,18 +78,18 @@ void setup() {
 }
  
 void loop() {
-  int EN = 150;
   
-  analogWrite(ENA, EN);
-  analogWrite(ENB, EN);
-  
-  
-  yon_ileri(); delay(1000);
-  dur();
+  hiz(3); yon_ileri(); delay(1500);
+  hiz(2); delay(1500);
+  hiz(1); delay(1500);
+  dur(); delay(1000);
 
-  yon_geri(); delay(1000);
-  dur();
+  hiz(3); yon_geri(); delay(1500);
+  hiz(2); delay(1500);
+  hiz(1); delay(1500);
+  dur(); delay(1000);
 
-  delay(2000);
+  
+  delay(1000);
 
 }
