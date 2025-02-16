@@ -38,7 +38,7 @@ void hiz(int v){
     case 0: EN =0;   break;
     case 1: EN =90;  break;
     case 2: EN =130;  break;
-    case 3: EN =180; break;
+    case 3: EN =220; break;
     case 4: EN =255; break;
   }
   analogWrite(ENA, EN);
@@ -79,16 +79,11 @@ void setup() {
  
 void loop() {
   
-  hiz(3); yon_ileri(); delay(1500);
-  hiz(2); delay(1500);
-  hiz(1); delay(1500);
+  hiz(4); yon_ileri(); delay(1000);
   dur(); delay(1000);
 
-  hiz(3); yon_geri(); delay(1500);
-  hiz(2); delay(1500);
-  hiz(1); delay(1500);
+  hiz(4); yon_geri(); delay(1000);
   dur(); delay(1000);
-
   
   delay(1000);
 
