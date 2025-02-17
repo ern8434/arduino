@@ -8,7 +8,8 @@ int ENA = 10;
 int ENB = 9;
 
 int YON = 1; 
-int HIZ = 0;
+
+int EN = 150; // 255 üzerinden motorlara verilen voltaj
 
 // 1:ileri -1:geri 0:dur
 
@@ -31,27 +32,11 @@ void yon_sec(int y){
   YON = y;// yeni yön değerini sakla
 }
 
-void hiz(int v){
-  int EN = 0;
-  
-  switch(v){
-    case 0: EN =0;   break;
-    case 1: EN =90;  break;
-    case 2: EN =130;  break;
-    case 3: EN =220; break;
-    case 4: EN =255; break;
-  }
-  analogWrite(ENA, EN);
-  analogWrite(ENB, EN);
-  HIZ = v;
-}
-
 void dur(){
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
-  hiz(0);
   YON = 0;
 }
 void yon_ileri(){
@@ -78,11 +63,13 @@ void setup() {
 }
  
 void loop() {
-  
-  hiz(4); yon_ileri(); delay(1000);
+  analogWrite(ENA, EN);
+  analogWrite(ENB, EN);
+
+  yon_ileri(); delay(1000);
   dur(); delay(1000);
 
-  hiz(4); yon_geri(); delay(1000);
+  yon_geri(); delay(1000);
   dur(); delay(1000);
   
   delay(1000);
