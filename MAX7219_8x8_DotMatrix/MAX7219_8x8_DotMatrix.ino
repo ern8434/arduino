@@ -26,7 +26,7 @@ void setup() {
   lc.shutdown(0, false);
   
   // Set the brightness to a medium level (0 to 15)
-  lc.setIntensity(0, 8);
+  lc.setIntensity(0, 1);
   
   // Clear the display
   lc.clearDisplay(0);
